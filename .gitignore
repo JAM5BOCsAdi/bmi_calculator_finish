@@ -45,6 +45,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+<<<<<<< HEAD
 windows/flutter/ephemeral/flutter_windows.dll.pdb
 windows/flutter/ephemeral/flutter_windows.h
 windows/flutter/ephemeral/flutter_windows.dll
+=======
+>>>>>>> be92f73726bf704a3374e3f4895302cbd4036337

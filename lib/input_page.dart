@@ -41,7 +41,10 @@ class _InputPageState extends State<InputPage> {
           child: const Icon(Icons.add),
         ),
       ),
+<<<<<<< HEAD
 
+=======
+>>>>>>> be92f73726bf704a3374e3f4895302cbd4036337
 */
     );
   }
