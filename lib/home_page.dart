@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'input_page.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -44,53 +46,8 @@ class MyApp extends StatelessWidget {
 */
       ),
       home: const SafeArea(
-        child: MyHomePage(title: 'BMI Calculator'),
+        child: InputPage(title: 'BMI Calculator'),
       ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text(widget.title),
-        ),
-      ),
-      body: const Center(
-        child: Text("Body Text"),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
-/*
-        IF you want to change the Theme of the "floatingActionButton" LATER ON:
-
-
-        floatingActionButton: Theme(
-        data: ThemeData(
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: Color(0xFF9122A8),
-          ),
-        ),
-        child: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.add),
-        ),
-      ),
-*/
     );
   }
 }
