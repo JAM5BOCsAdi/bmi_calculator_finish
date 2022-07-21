@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BMI Calc',
-      theme: ThemeData(
+      theme: ThemeData.dark().copyWith(
         // Dark Blue: 0xFF0A0E21 || Purple: 0xFF9122A8 || White: 0xFFFFFFFF Other
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF0A0E21),
@@ -33,10 +33,15 @@ class MyApp extends StatelessWidget {
             color: Color(0xFFFFFFFF),
           ),
         ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+/*
+
+          IF you want to change the Theme of the "floatingActionButton" at the BEGINNING:
+
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Color(0xFF9122A8),
           foregroundColor: Color(0xFFFFFFFF),
         ),
+*/
       ),
       home: const SafeArea(
         child: MyHomePage(title: 'BMI Calculator'),
@@ -70,6 +75,22 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
+/*
+        IF you want to change the Theme of the "floatingActionButton" LATER ON:
+
+
+        floatingActionButton: Theme(
+        data: ThemeData(
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: Color(0xFF9122A8),
+          ),
+        ),
+        child: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add),
+        ),
+      ),
+*/
     );
   }
 }
