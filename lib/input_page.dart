@@ -1,5 +1,7 @@
 import 'package:bmi_calculator/reusable_card.dart';
+import 'package:bmi_calculator/reusable_card_content.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key, required this.title}) : super(key: key);
@@ -31,11 +33,19 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     colour: reusableCardColor,
+                    cardChild: ReusableCardContent(
+                      icon: FontAwesomeIcons.mars,
+                      label: "MALE",
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     colour: reusableCardColor,
+                    cardChild: ReusableCardContent(
+                      icon: FontAwesomeIcons.venus,
+                      label: "FEMALE",
+                    ),
                   ),
                 ),
               ],
