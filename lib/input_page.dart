@@ -11,6 +11,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  static const double bottomContainerHeight = 80.0;
+  static const Color bottomContainerColor = Color(0xFFEB1555);
+  static const Color reusableCardColor = Color(0xFF1D1E33);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,12 +30,12 @@ class _InputPageState extends State<InputPage> {
               children: const [
                 Expanded(
                   child: ReusableCard(
-                    colour: Color(0xFF1D1E33),
+                    colour: reusableCardColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    colour: Color(0xFF1D1E33),
+                    colour: reusableCardColor,
                   ),
                 ),
               ],
@@ -39,7 +43,7 @@ class _InputPageState extends State<InputPage> {
           ),
           const Expanded(
             child: ReusableCard(
-              colour: Color(0xFF1D1E33),
+              colour: reusableCardColor,
             ),
           ),
           Expanded(
@@ -47,16 +51,22 @@ class _InputPageState extends State<InputPage> {
               children: const [
                 Expanded(
                   child: ReusableCard(
-                    colour: Color(0xFF1D1E33),
+                    colour: reusableCardColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    colour: Color(0xFF1D1E33),
+                    colour: reusableCardColor,
                   ),
                 ),
               ],
             ),
+          ),
+          Container(
+            color: bottomContainerColor,
+            margin: const EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: bottomContainerHeight,
           ),
         ],
       ),
