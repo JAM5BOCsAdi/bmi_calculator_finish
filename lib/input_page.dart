@@ -21,7 +21,7 @@ class _InputPageState extends State<InputPage> {
   static const Color activeCardColor = Color(0xFF1D1E33);
   static const Color inactiveCardColor = Color(0xFF111328);
 
-  Gender selectedGender = Gender.male;
+  Gender selectedGender = Gender.female;
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    },
+                    onPress: () => setState(() => selectedGender = Gender.male),
                     colour: selectedGender == Gender.male
                         ? activeCardColor
                         : inactiveCardColor,
@@ -54,11 +50,8 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    },
+                    onPress: () =>
+                        setState(() => selectedGender = Gender.female),
                     colour: selectedGender == Gender.female
                         ? activeCardColor
                         : inactiveCardColor,
