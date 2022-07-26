@@ -1,10 +1,10 @@
+import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/height_slider.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:bmi_calculator/reusable_card_content.dart';
+import 'package:bmi_calculator/round_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'constants.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key, required this.title}) : super(key: key);
@@ -19,6 +19,9 @@ enum Gender { male, female }
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.female;
+  int weight = 60;
+  int age = 18;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,15 +81,69 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: Row(
-              children: const [
+              children: [
                 Expanded(
                   child: ReusableCard(
                     colour: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "WEIGHT",
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () => setState(() => weight--),
+                            ),
+                            const SizedBox(width: 10.0),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () => setState(() => weight++),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     colour: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "AGE",
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () => setState(() => age--),
+                            ),
+                            const SizedBox(width: 10.0),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () => setState(() => age++),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -100,39 +157,6 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
-/*
-
-Container(
-              height: 100.0,
-              width: 100.0,
-              margin: const EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: const Color(0xFF1D1E33),
-              ),
-            ),
-
-
-     floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
-
-        IF you want to change the Theme of the "floatingActionButton" LATER ON:
-
-
-        floatingActionButton: Theme(
-        data: ThemeData(
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: Color(0xFF9122A8),
-          ),
-        ),
-        child: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.add),
-        ),
-      ),
-*/
     );
   }
 }
