@@ -1,8 +1,10 @@
+import 'package:bmi_calculator/height_slider_theme.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:bmi_calculator/reusable_card_content.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'constants.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key, required this.title}) : super(key: key);
@@ -16,13 +18,7 @@ class InputPage extends StatefulWidget {
 enum Gender { male, female }
 
 class _InputPageState extends State<InputPage> {
-  static const double bottomContainerHeight = 80.0;
-  static const Color bottomContainerColor = Color(0xFFEB1555);
-  static const Color activeCardColor = Color(0xFF1D1E33);
-  static const Color inactiveCardColor = Color(0xFF111328);
-
   Gender selectedGender = Gender.female;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +28,7 @@ class _InputPageState extends State<InputPage> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -40,8 +37,8 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     onPress: () => setState(() => selectedGender = Gender.male),
                     colour: selectedGender == Gender.male
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     cardChild: const ReusableCardContent(
                       icon: FontAwesomeIcons.mars,
                       label: "MALE",
@@ -53,8 +50,8 @@ class _InputPageState extends State<InputPage> {
                     onPress: () =>
                         setState(() => selectedGender = Gender.female),
                     colour: selectedGender == Gender.female
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     cardChild: const ReusableCardContent(
                       icon: FontAwesomeIcons.venus,
                       label: "FEMALE",
@@ -64,9 +61,19 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          const Expanded(
+          Expanded(
             child: ReusableCard(
-              colour: activeCardColor,
+              colour: kActiveCardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "HEIGHT",
+                    style: kLabelTextStyle,
+                  ),
+                  HeightSliderTheme(),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -74,22 +81,22 @@ class _InputPageState extends State<InputPage> {
               children: const [
                 Expanded(
                   child: ReusableCard(
-                    colour: activeCardColor,
+                    colour: kActiveCardColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    colour: activeCardColor,
+                    colour: kActiveCardColor,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
             margin: const EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       ),
