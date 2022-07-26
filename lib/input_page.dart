@@ -1,4 +1,4 @@
-import 'package:bmi_calculator/height_slider_theme.dart';
+import 'package:bmi_calculator/height_slider.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:bmi_calculator/reusable_card_content.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +71,7 @@ class _InputPageState extends State<InputPage> {
                     "HEIGHT",
                     style: kLabelTextStyle,
                   ),
-                  HeightSliderTheme(),
+                  HeightSlider(),
                 ],
               ),
             ),

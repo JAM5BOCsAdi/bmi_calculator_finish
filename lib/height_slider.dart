@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
-class HeightSliderTheme extends StatefulWidget {
-  const HeightSliderTheme({Key? key}) : super(key: key);
+class HeightSlider extends StatefulWidget {
+  const HeightSlider({Key? key}) : super(key: key);
 
   @override
-  State<HeightSliderTheme> createState() => _HeightSliderThemeState();
+  State<HeightSlider> createState() => _HeightSliderState();
 }
 
-class _HeightSliderThemeState extends State<HeightSliderTheme> {
+class _HeightSliderState extends State<HeightSlider> {
   int height = 180;
 
   @override
