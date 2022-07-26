@@ -42,7 +42,7 @@ class _HeightSliderThemeState extends State<HeightSliderTheme> {
           ),
           child: Slider(
             value: height.toDouble(),
-            min: 120.0,
+            min: 130.0,
             max: 230.0,
             onChanged: (double newValue) {
               setState(() => height = newValue.round());
