@@ -8,6 +8,8 @@ import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../functionalities/calculator_functionality.dart';
+
 class InputPage extends StatefulWidget {
   const InputPage({Key? key, required this.title}) : super(key: key);
 
@@ -21,8 +23,12 @@ enum Gender { male, female }
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.female;
+
   int weight = 60;
   int age = 18;
+  int? height;
+
+  _onHeightChanged(double newHeight) => setState(() => height = newHeight.round());
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +47,7 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     onPress: () => setState(() => selectedGender = Gender.male),
-                    colour: selectedGender == Gender.male
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
+                    colour: selectedGender == Gender.male ? kActiveCardColor : kInactiveCardColor,
                     cardChild: const ReusableCardContent(
                       icon: FontAwesomeIcons.mars,
                       label: "MALE",
@@ -52,11 +56,8 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    onPress: () =>
-                        setState(() => selectedGender = Gender.female),
-                    colour: selectedGender == Gender.female
-                        ? kActiveCardColor
-                        : kInactiveCardColor,
+                    onPress: () => setState(() => selectedGender = Gender.female),
+                    colour: selectedGender == Gender.female ? kActiveCardColor : kInactiveCardColor,
                     cardChild: const ReusableCardContent(
                       icon: FontAwesomeIcons.venus,
                       label: "FEMALE",
@@ -71,12 +72,9 @@ class _InputPageState extends State<InputPage> {
               colour: kActiveCardColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    "HEIGHT",
-                    style: kLabelTextStyle,
-                  ),
-                  HeightSlider(),
+                children: [
+                  const Text("HEIGHT", style: kLabelTextStyle),
+                  HeightSlider(onChanged: _onHeightChanged),
                 ],
               ),
             ),
@@ -90,14 +88,8 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "WEIGHT",
-                          style: kLabelTextStyle,
-                        ),
-                        Text(
-                          weight.toString(),
-                          style: kNumberTextStyle,
-                        ),
+                        const Text("WEIGHT", style: kLabelTextStyle),
+                        Text(weight.toString(), style: kNumberTextStyle),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -122,14 +114,8 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "AGE",
-                          style: kLabelTextStyle,
-                        ),
-                        Text(
-                          age.toString(),
-                          style: kNumberTextStyle,
-                        ),
+                        const Text("AGE", style: kLabelTextStyle),
+                        Text(age.toString(), style: kNumberTextStyle),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -153,14 +139,21 @@ class _InputPageState extends State<InputPage> {
           ),
           BottomButton(
             buttonTitle: "CALCULATE",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ResultsPage(),
-                ),
-              );
-            },
+            onTap: height != null
+                ? () {
+                    CalculatorFunctionality calc = CalculatorFunctionality(height: height!, weight: weight);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResultsPage(
+                          bmiResult: calc.calculateBMI(),
+                          resultText: calc.getResult(),
+                          interpretation: calc.getInterpretation(),
+                        ),
+                      ),
+                    );
+                  }
+                : null,
           ),
         ],
       ),

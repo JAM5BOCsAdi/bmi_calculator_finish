@@ -1,8 +1,12 @@
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 
+typedef HeightSliderChanged = Function(double newValue);
+
 class HeightSlider extends StatefulWidget {
-  const HeightSlider({Key? key}) : super(key: key);
+  final HeightSliderChanged onChanged;
+
+  const HeightSlider({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   State<HeightSlider> createState() => _HeightSliderState();
@@ -20,14 +24,8 @@ class _HeightSliderState extends State<HeightSlider> {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: [
-            Text(
-              height.toString(),
-              style: kNumberTextStyle,
-            ),
-            const Text(
-              "cm",
-              style: kLabelTextStyle,
-            ),
+            Text(height.toString(), style: kNumberTextStyle),
+            const Text("cm", style: kLabelTextStyle),
           ],
         ),
         SliderTheme(
@@ -45,6 +43,7 @@ class _HeightSliderState extends State<HeightSlider> {
             max: 230.0,
             onChanged: (double newValue) {
               setState(() => height = newValue.round());
+              widget.onChanged(newValue);
             },
           ),
         ),
